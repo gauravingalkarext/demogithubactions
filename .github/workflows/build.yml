@@ -12,7 +12,7 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - name: Welcome
-        run: echo" welcome"
+        run: echo "welcome"
 
   deploy_development:
     runs-on: ubuntu-latest
