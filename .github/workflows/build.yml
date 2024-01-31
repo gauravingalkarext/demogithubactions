@@ -23,10 +23,8 @@ jobs:
         uses: actions/cache/save@v3
         with:
           path: node_modules
-          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
+          key: node_modules_key
   
-
-
   deploy_development:
     runs-on: ubuntu-latest
     needs: [build]
@@ -41,7 +39,7 @@ jobs:
         uses: actions/cache/restore@v3
         with:
           path: node_modules
-          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
+          key: node_modules_key
       - name: install
         if: steps.mycachedep.outputs.cache-hit != 'true'
         run: ls -al node_modules
