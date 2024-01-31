@@ -44,7 +44,7 @@ jobs:
           key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
       - name: install
         if: steps.mycachedep.outputs.cache-hit != 'true'
-        run: npm install
+        run: ls -al node_modules
       - name: Deploying production
         run: echo "deploying to development"
 
