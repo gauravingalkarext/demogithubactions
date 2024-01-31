@@ -17,7 +17,13 @@ jobs:
   deploy_development:
     runs-on: ubuntu-latest
     environment: development
+    steps:
+      - name: Deploying production
+        run: echo "deploying to development"
 
   deploy_production:
     runs-on: ubuntu-latest
     environment: production
+    steps:
+      - name: Deploying production
+        run: echo "deploying to production"
