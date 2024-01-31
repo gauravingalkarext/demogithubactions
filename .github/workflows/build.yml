@@ -32,6 +32,10 @@ jobs:
     needs: [build]
     environment: development
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       - name: Cache node modules
         id: mycachedep
         uses: actions/cache/restore@v3
