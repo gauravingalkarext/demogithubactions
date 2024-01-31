@@ -23,7 +23,7 @@ jobs:
         uses: actions/cache/save@v3
         with:
           path: node_modules
-          key: node_modules_key
+          key: cache-${{ github.run_id }}-${{ github.run_attempt }}
   
   deploy_development:
     runs-on: ubuntu-latest
@@ -39,7 +39,7 @@ jobs:
         uses: actions/cache/restore@v3
         with:
           path: node_modules
-          key: node_modules_key
+          key: cache-${{ github.run_id }}-${{ github.run_attempt }}
       - name: install
         # if: steps.mycachedep.outputs.cache-hit != 'true'
         run: ls -al node_modules
