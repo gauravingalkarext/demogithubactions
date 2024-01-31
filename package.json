@@ -1,0 +1,22 @@
+{
+  "name": "demogithubactions",
+  "version": "1.0.0",
+  "description": "testing environment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gauravingalkarext/demogithubactions.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gauravingalkarext/demogithubactions/issues"
+  },
+  "homepage": "https://github.com/gauravingalkarext/demogithubactions#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
