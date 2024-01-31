@@ -12,13 +12,35 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - name: Welcome
-        run: echo "welcome"
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Cache node modules
+        id: mycachedep
+        uses: actions/cache/save@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
+  
+      - name: install
+        if: steps.mycachedep.outputs.cache-hit != 'true'
+        run: npm install
+
 
   deploy_development:
     runs-on: ubuntu-latest
     needs: [build]
     environment: development
     steps:
+      - name: Cache node modules
+        id: mycachedep
+        uses: actions/cache/restore@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
+      - name: install
+        if: steps.mycachedep.outputs.cache-hit != 'true'
+        run: npm install
       - name: Deploying production
         run: echo "deploying to development"
 
