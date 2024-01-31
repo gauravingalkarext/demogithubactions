@@ -2,11 +2,9 @@ name: Build
 
 on:
   push:
-    branches:
-      - main
 
 jobs:
-  unit-tests:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -15,3 +13,11 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
       - name: Welcome
         run: echo" welcome"
+
+  deploy_development:
+    runs-on: ubuntu-latest
+    environment: development
+
+  deploy_production:
+    runs-on: ubuntu-latest
+    environment: production
