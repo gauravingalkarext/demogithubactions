@@ -15,6 +15,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
+      - name: install
+        if: steps.mycachedep.outputs.cache-hit != 'true'
+        run: npm install
       - name: Cache node modules
         id: mycachedep
         uses: actions/cache/save@v3
@@ -22,9 +25,6 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
   
-      - name: install
-        if: steps.mycachedep.outputs.cache-hit != 'true'
-        run: npm install
 
 
   deploy_development:
