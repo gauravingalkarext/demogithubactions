@@ -47,8 +47,7 @@ jobs:
 
   deploy_development:
     runs-on: ubuntu-latest
-    needs: [run_tests]
-    if: ${{ needs.run_tests.result == 'success' }}
+    needs: [manual-approval-on-failure]
     environment: development
     steps:
       - name: Deploying production
