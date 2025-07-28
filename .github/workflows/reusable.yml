@@ -3,6 +3,10 @@ name: Test scripts
 
 on:
   workflow_call:
+    outputs:
+        my-var:
+            description: "my variable"
+            value: ${{ jobs.run-scripts.outputs.my-var }}
 
 jobs:
   run-scripts:
