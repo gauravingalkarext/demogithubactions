@@ -15,5 +15,9 @@ jobs:
       - name: run scripts
         id: run-scripts
         run: |
+          chmod +x ./script.sh
           sh ./script.sh
-          echo "test-output=${{env.test-output}}" >> "$GITHUB_OUTPUT"
+          echo "another-value=wowowoww" >> "$GITHUB_ENV"
+          echo "test another-value - ${{ env.another-value }}"
+          echo "test another-value1 - ${{ env.another-value1 }}"
+          echo " test-output - ${{ env.test-output}}"
