@@ -22,4 +22,4 @@ jobs:
         run: |
           echo "test another-value - ${{ env.another-value }}"
           echo "test another-value1 - ${{ env.another-value1 }}"
-          echo " test-output - ${{ env.test-output}}"
+          echo " test-output - ${{ steps.run-scripts.outputs.test-output}}"
