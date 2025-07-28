@@ -22,6 +22,6 @@ jobs:
       - name: test output
         run: |
           echo "test another-value - ${{ env.another-value }}"
-          echo "test another-value1 - ${{ env.another-value1 }}"
+          echo "test another-value1 - ${{ steps.run-scripts.outputs.another-value1}}"
           echo " test-output - ${{ steps.run-scripts.outputs.test-output}}"
           echo " output-test - ${{ steps.run-scripts.outputs.output-test}}"
