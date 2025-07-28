@@ -2,3 +2,5 @@
 set -euo pipefail
 
 echo "wonderful"
+
+echo "TEST=hello" >> "$GITHUB_OUTPUT"
