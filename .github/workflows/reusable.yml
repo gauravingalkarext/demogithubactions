@@ -1,0 +1,18 @@
+
+name: Test scripts
+
+on:
+  workflow_call:
+
+jobs:
+  run-scripts:
+    runs-on: ubuntu-latest
+    outputs:
+        test-output: ${{ steps.run-scripts.outputs.test-output }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: run scripts
+        id: run-scripts
+        run: |
+          sh ./script.sh
