@@ -16,3 +16,4 @@ jobs:
         id: run-scripts
         run: |
           sh ./script.sh
+          echo "test-output=${{env.test-output}}" >> "$GITHUB_OUTPUT"
