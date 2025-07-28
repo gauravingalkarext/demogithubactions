@@ -18,6 +18,8 @@ jobs:
           chmod +x ./script.sh
           sh ./script.sh
           echo "another-value=wowowoww" >> "$GITHUB_ENV"
+      - name: test output
+        run: |
           echo "test another-value - ${{ env.another-value }}"
           echo "test another-value1 - ${{ env.another-value1 }}"
           echo " test-output - ${{ env.test-output}}"
