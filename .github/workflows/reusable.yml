@@ -6,7 +6,7 @@ on:
     outputs:
         my-var:
             description: "my variable"
-            value: ${{ jobs.run-scripts.outputs.my-var }}
+            value: ${{ toJSON(jobs.run-scripts.outputs.my-var) }}
 
 jobs:
   run-scripts:

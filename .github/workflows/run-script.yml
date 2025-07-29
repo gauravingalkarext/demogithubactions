@@ -17,6 +17,5 @@ jobs:
     steps:
       - name: run scripts
         run: |
+          echo "${{ fromJSON(needs.run-scripts.outputs.my-var) }}"
           echo "${{ toJSON(needs.run-scripts.outputs.my-var) }}"
-          echo "${{ toJSON(needs.run-scripts.outputs.*.my-var) }}"
-          echo "${{ toJSON(needs.run-scripts.outputs) }}"
