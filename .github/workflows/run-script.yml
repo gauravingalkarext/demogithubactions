@@ -6,6 +6,9 @@ on:
 
 jobs:
   run-scripts:
+    strategy:
+      matrix:
+        region: ["eu", "apac"]
     uses: ./.github/workflows/reusable.yml
 
   another-job:
@@ -15,3 +18,4 @@ jobs:
       - name: run scripts
         run: |
           echo "${{ needs.run-scripts.outputs.my-var }}"
+          echo "${{ toJSON(needs.run-scripts.outputs.*.my-var) }}"
