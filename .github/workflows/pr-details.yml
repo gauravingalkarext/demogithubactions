@@ -1,0 +1,46 @@
+name: Java libraries Release Notification
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  id-token: write
+  contents: read
+  pull-requests: read
+
+env:
+  AWS_ENVIRONMENT: qa
+
+jobs:
+  preview:
+    if: github.event.issue.pull_request && contains(github.event.comment.body, '/slack-notification-review')
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get PR branch
+        id: pr-details
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          PR_BRANCH=$(gh pr view ${{ github.event.issue.number }} --json headRefName --jq '.headRefName')
+          echo "branch=$PR_BRANCH" >> $GITHUB_OUTPUT
+
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.pr-details.outputs.branch }}
+
+      - name: Extract and preview message
+        run: |
+          TEXT=$(cat ./test.txt)
+          PR_URL="https://github.com/${{ github.repository }}/pull/${{ github.event.issue.number }}"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "📋 SLACK MESSAGE PREVIEW:"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo ""
+          echo "$TEXT"
+          echo "$PR_URL"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
