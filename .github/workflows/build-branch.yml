@@ -1,7 +1,8 @@
-name: Hello World Workflow
+name: Hello World Workflow 2
 
 # Triggers the workflow manually using the "workflow_dispatch" event
 on:
+  pull_request: 
   push: 
     branches:
       - testbranch
