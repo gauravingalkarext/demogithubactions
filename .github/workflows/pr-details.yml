@@ -19,6 +19,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: refs/pull/${{ github.event.issue.number }}/head
 
       - name: Get PR branch
         id: pr-details
@@ -36,7 +38,7 @@ jobs:
           echo "📋 SLACK MESSAGE PREVIEW:"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
           echo ""
-          echo "$TEXT"
-          echo "$PR_URL"
+          echo "Content : $TEXT"
+          echo "PR : $PR_URL"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
