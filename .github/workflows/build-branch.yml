@@ -13,5 +13,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Print Hello World
-      run: echo "Hello, World!"
+    - name: Print Branch name
+      run: echo ${{ github.head_ref }}
